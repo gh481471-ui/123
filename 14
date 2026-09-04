@@ -1,0 +1,53 @@
+package com.example.demo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+@SpringBootApplication
+public class CustomerDi1Application {
+
+	public static void main(String[] args) {
+		ConfigurableApplicationContext Context=SpringApplication.run(CustomerDi1Application.class, args);
+		teja C=Context.getBean(teja .class);
+	}
+
+}
+
+
+
+
+package com.example.demo;
+
+import org.springframework.stereotype.Component;
+
+@Component
+
+public class teja {
+	private String Custname;
+	private String coursname;
+	
+	private int Custid;
+	public int getCustid() {
+		return Custid;
+	}
+	public void setCustid(int custid) {
+		Custid = custid;
+	}
+	public String getCustname() {
+		return Custname;
+	}
+	public void setCustname(String custname) {
+		Custname = custname;
+	}
+	public String getCoursname() {
+		return coursname;
+	}
+	public void setCoursname(String coursname) {
+		this.coursname = coursname;
+	}
+	public void  display() {
+		System.out.println ("DI is succssfully");
+	}
+
+}
