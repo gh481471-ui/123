@@ -1,0 +1,145 @@
+@@ -0,0 +1,144 @@
+
+@Component
+class Student {
+    @Autowired
+    StudentService service;
+}
+```
+
+**Meaning:** Spring automatically provides the `StudentService` object.
+
+---
+
+## 2. @Bean
+
+**Meaning:** Used to create an object managed by Spring.
+
+```java
+@Configuration
+class AppConfig {
+
+    @Bean
+    public Student student() {
+        return new Student();
+    }
+}
+```
+
+**Meaning:** The `student()` object becomes a Spring Bean.
+
+---
+
+## 3. @Qualifier
+
+**Meaning:** Used to select a specific Bean when multiple Beans have the same type.
+
+```java
+@Component("car")
+class Car implements Vehicle {
+}
+
+@Component("bike")
+class Bike implements Vehicle {
+}
+
+@Component
+class Driver {
+
+    @Autowired
+    @Qualifier("car")
+    Vehicle vehicle;
+}
+```
+
+**Meaning:** Spring selects the `car` object specifically.
+
+---
+
+## 4. @Value
+
+**Meaning:** Used to inject a value into a field.
+
+```java
+@Component
+class Student {
+
+    @Value("Vishwa")
+    String name;
+
+    void display() {
+        System.out.println(name);
+    }
+}
+```
+
+**Output:**
+
+```text
+Vishwa
+```
+
+**Meaning:** The value `"Vishwa"` is assigned to `name`.
+
+---
+
+## 5. @DependsOn
+
+**Meaning:** Specifies that one Bean must be created before another Bean.
+
+```java
+@Component("database")
+class Database {
+}
+
+@Component
+@DependsOn("database")
+class Student {
+}
+```
+
+**Meaning:** `database` is created before `Student`.
+
+---
+
+## 6. @Lazy
+
+**Meaning:** Delays Bean creation until the Bean is actually needed.
+
+```java
+@Component
+@Lazy
+class Student {
+
+    Student() {
+        System.out.println("Student object created");
+    }
+}
+```
+
+**Meaning:** The `Student` object is not created when the application starts; it is created when required.
+
+---
+
+## 7. @Lookup
+
+**Meaning:** Used to obtain a Bean instance through a lookup method, commonly when a singleton needs a prototype Bean.
+
+```java
+@Component
+@Scope("prototype")
+class Student {
+}
+
+@Component
+class College {
+
+    @Lookup
+    public Student getStudent() {
+        return null;
+    }
+}
+```
+
+
+Spring annotations reduce XML configuration and make dependency management and application configuration easier.
