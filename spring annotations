@@ -1,0 +1,114 @@
+# Spring Annotations – Examples
+
+## 1. @Autowired – Inject object
+
+```java
+@Component
+class StudentService {
+}
+
+@Component
+class Student {
+    @Autowired
+    StudentService service;
+}
+```
+
+**Example:** Spring automatically gives `StudentService` to `Student`.
+
+---
+
+## 2. @Bean – Create object
+
+```java
+@Configuration
+class AppConfig {
+
+    @Bean
+    Student student() {
+        return new Student();
+    }
+}
+```
+
+**Example:** Spring creates the `Student` object as a Bean.
+
+---
+
+## 3. @Qualifier – Select object
+
+```java
+@Autowired
+@Qualifier("car")
+Vehicle vehicle;
+```
+
+**Example:** If there are many `Vehicle` objects, Spring selects the **car**.
+
+---
+
+## 4. @Value – Give value
+
+```java
+@Value("Vishwa")
+String name;
+```
+
+**Example:** `name` gets the value **Vishwa**.
+
+---
+
+## 5. @DependsOn – Create first
+
+```java
+@Component("database")
+class Database {
+}
+
+@Component
+@DependsOn("database")
+class Student {
+}
+```
+
+**Example:** `Database` is created **before Student**.
+
+---
+
+## 6. @Lazy – Create later
+
+```java
+@Component
+@Lazy
+class Student {
+}
+```
+
+**Example:** `Student` object is created **only when it is needed**.
+
+---
+
+## 7. @Lookup – Get object
+
+```java
+@Component
+class College {
+
+    @Lookup
+    Student getStudent() {
+        return null;
+    }
+}
+```
+
+**Example:** `getStudent()` gets a **Student object from Spring**.
+
+# Easy Memory Trick
+
+- **@Autowired → Inject**
+- **@Bean → Create**
+- **@Qualifier → Select**
+- **@Value → Give value**
+- **@DependsOn → Before**
+- **@Lazy → Later**
+- **@Lookup → Get**
