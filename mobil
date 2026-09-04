@@ -1,0 +1,26 @@
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+
+import Fashion from "./pages/Fashion";
+import Mobile from "./pages/Mobile";
+import Deals from "./pages/Deals";
+
+function App() {
+  return (
+    <BrowserRouter>a
+      <nav>
+        <Link to="/mobile">Mobile</Link>
+        <Link to="/fashion">Fashion</Link>
+        <Link to="/deals">Deals</Link>
+      </nav> nb       
+
+      <Routes>
+        <Route path="/fashion" element={<Fashion />} />
+        <Route path="/mobile" element={<Mobile />} />
+        <Route path="/deals" element={<Deals />} />
+      </Routes>
+
+    </BrowserRouter>
+  );
+}
+
+export default App;
